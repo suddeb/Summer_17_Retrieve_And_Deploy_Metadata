@@ -1,2 +1,20 @@
 <apex:page controller="AdminHelpController">
+    <apex:pageBlock title="Admin Help">
+        This is your one stop shop for Administrative work
+    </apex:pageBlock>
+    <apex:pageBlock>
+        <apex:dataTable value="{!adminPrefs}" var="singleAdminPref" id="theTable"
+            rowClasses="odd,even" styleClass="tableClass">
+            
+            <apex:column>
+                <apex:facet name="header">Name</apex:facet>
+                <apex:outputText value="Hello" />
+            </apex:column>
+
+            <apex:column>
+                <apex:facet name="header">Enabled</apex:facet>
+                <apex:outputText value="Hello" />
+            </apex:column>
+        </apex:dataTable>
+    </apex:pageBlock>
 </apex:page>

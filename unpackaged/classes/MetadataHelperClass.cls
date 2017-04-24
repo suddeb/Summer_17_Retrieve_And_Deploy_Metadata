@@ -16,4 +16,9 @@ public class MetadataHelperClass {
             } 
         }
     }
+
+    public class MetadataHelper{
+        public String name {get;set;}
+        public Boolean isEnabled {get;set;}
+    }
 }
