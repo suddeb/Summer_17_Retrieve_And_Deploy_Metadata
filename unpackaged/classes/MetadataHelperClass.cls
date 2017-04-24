@@ -15,6 +15,5 @@ public class MetadataHelperClass {
                 System.Debug('Field: ' + singleCustomMetadataVale.field + ' Value: ' + singleCustomMetadataVale.value);
             } 
         }
-        
     }
 }
