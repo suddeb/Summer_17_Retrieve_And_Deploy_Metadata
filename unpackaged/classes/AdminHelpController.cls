@@ -11,5 +11,11 @@ public class AdminHelpController {
 
     public void updatePreference(){
         System.Debug('--++-- Inside updatePreference');
+
+        for(MetadataHelperClass.MetadataHelper single : adminPrefs){
+            System.Debug('--++-- Label: ' + single.name + ' isEnabled: ' + single.isEnabled);
+        }
+
+        new MetadataHelperClass().updatePrefereces(adminPrefs);
     }
 }

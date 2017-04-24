@@ -1,22 +1,8 @@
 public class MetadataHelperClass {
     private List<Metadata.Metadata> getMetadataInformation(){
-        //Create List of Metadata Components with their full name
         List<String> componentNameList = new List<String>{'Admin_Preference__mdt.Process_Builder_Preference','Admin_Preference__mdt.Trigger_Preference','Admin_Preference__mdt.Validation_Rule_Preference','Admin_Preference__mdt.Workflow_Preference'};
         
-        //Retrieve the Metadata
         List<Metadata.Metadata> components = Metadata.Operations.retrieve(Metadata.MetadataType.CustomMetadata, componentNameList);
-
-    
-        //Looping through the Metadata to get the values
-        /*
-        for(Metadata.Metadata singleComponent : components){
-            Metadata.CustomMetadata customMetadataRecord = (Metadata.CustomMetadata)singleComponent;
-            System.Debug('Label: ' + customMetadataRecord.label);
-            
-            for(Metadata.CustomMetadataValue singleCustomMetadataVale : customMetadataRecord.values){
-                System.Debug('Field: ' + singleCustomMetadataVale.field + ' Value: ' + singleCustomMetadataVale.value);
-            }
-        }*/
         return components;
     }
 
@@ -42,6 +28,27 @@ public class MetadataHelperClass {
         return prepareMetadataHelpers(components);
     }
 
+    public void updatePrefereces(List<MetadataHelper> all){
+        for(MetadataHelper single : all){
+            Metadata.CustomMetadata customMetadata =  new Metadata.CustomMetadata();
+            customMetadata.fullName = single.getFullName();
+
+            Metadata.CustomMetadataValue customField = new Metadata.CustomMetadataValue();
+            customField.field = 'Enabled__c';
+            customField.value = single.isEnabled;
+
+            customMetadata.values.add(customField);
+
+            Metadata.DeployContainer mdContainer = new Metadata.DeployContainer();
+            mdContainer.addMetadata(customMetadata);
+
+            MyDeployCallback callback = new MyDeployCallback();
+
+            // Enqueue custom metadata deployment
+            Id jobId = Metadata.Operations.enqueueDeployment(mdContainer, callback);
+        }
+    }
+
     public class MetadataHelper{
         public String name {get;set;}
         public Boolean isEnabled {get;set;}
@@ -49,6 +56,20 @@ public class MetadataHelperClass {
         public MetadataHelper(String name, Boolean isEnabled){
             this.name = name;
             this.isEnabled = isEnabled;
+        }
+
+        public String getFullName(){
+            String fullName = 'Admin_Preference__mdt.';
+            if(name.equalsIgnoreCase('Process Builder Preference')){
+                fullName = fullName + 'Process_Builder_Preference';
+            }else if(name.equalsIgnoreCase('Trigger Preference')){
+                fullName = fullName + 'Trigger_Preference';
+            }else if(name.equalsIgnoreCase('Validation Rule Preference')){
+                fullName = fullName + 'Validation_Rule_Preference';
+            }else if(name.equalsIgnoreCase('Workflow Preference')){
+                fullName = fullName + 'Workflow_Preference';
+            }
+            return fullName;
         }
     }
 }
