@@ -3,7 +3,7 @@
         <apex:pageBlock title="Admin Help">
             This is your one stop shop for Administrative work
         </apex:pageBlock>
-        <apex:pageBlock>
+        <apex:pageBlock id="dataTable">
             <apex:dataTable value="{!adminPrefs}" var="singleAdminPref" id="theTable"
                 rowClasses="odd,even" styleClass="tableClass">
                 
@@ -17,6 +17,8 @@
                     <apex:inputCheckbox value="{!singleAdminPref.isEnabled}" />
                 </apex:column>
             </apex:dataTable>
+
+            <apex:commandButton action="{!updatePreference}" value="Update Your Preference" id="UpdateButton" reRender="dataTable" />
         </apex:pageBlock>
     </apex:form>
 </apex:page>
