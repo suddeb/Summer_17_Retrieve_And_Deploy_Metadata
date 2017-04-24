@@ -8,12 +8,12 @@
             
             <apex:column>
                 <apex:facet name="header">Name</apex:facet>
-                <apex:outputText value="Hello" />
+                <apex:outputText value="{!singleAdminPref.name}" />
             </apex:column>
 
             <apex:column>
                 <apex:facet name="header">Enabled</apex:facet>
-                <apex:outputText value="Hello" />
+                <apex:outputText value="{!singleAdminPref.isEnabled}" />
             </apex:column>
         </apex:dataTable>
     </apex:pageBlock>
