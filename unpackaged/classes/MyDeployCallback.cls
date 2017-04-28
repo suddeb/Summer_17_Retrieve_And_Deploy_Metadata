@@ -2,9 +2,9 @@ public class MyDeployCallback implements Metadata.DeployCallback {
     public void handleResult(Metadata.DeployResult result,
                              Metadata.DeployCallbackContext context) {
         if (result.status == Metadata.DeployStatus.Succeeded) {
-            // Deployment was successful
+            System.Debug('--++-- Deployment is successful');
         } else {
-            // Deployment was not successful
+           System.Debug('--++-- Deployment failed with status: ' + result.status + ' with error message: ' + result.errorMessage);
         }
     }
 }

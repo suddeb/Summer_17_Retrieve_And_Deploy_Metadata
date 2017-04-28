@@ -6,7 +6,6 @@ public class AdminHelpController {
 
     public AdminHelpController(){
         adminPrefs = new List<MetadataHelperClass.MetadataHelper>();
-        //adminPrefs = new MetadataHelperClass().fetchTheAdminPreferences();
     }
 
     public void updatePreference(){
