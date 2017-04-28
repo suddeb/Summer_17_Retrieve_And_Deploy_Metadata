@@ -29,12 +29,14 @@ public class MetadataHelperClass {
     }
 
     public void updatePrefereces(List<MetadataHelper> all){
+        System.Debug('--++-- SD: Inside updatePrefereces');
         for(MetadataHelper single : all){
             Metadata.CustomMetadata customMetadata =  new Metadata.CustomMetadata();
             customMetadata.fullName = single.getFullName();
 
             Metadata.CustomMetadataValue customField = new Metadata.CustomMetadataValue();
             customField.field = 'Enabled__c';
+            System.Debug('--++-- Full Name: ' + single.getFullName() + ' Value: ' + single.isEnabled);
             customField.value = single.isEnabled;
 
             customMetadata.values.add(customField);
@@ -69,6 +71,7 @@ public class MetadataHelperClass {
             }else if(name.equalsIgnoreCase('Workflow Preference')){
                 fullName = fullName + 'Workflow_Preference';
             }
+            System.Debug('--++-- Full Name: ' + fullName);
             return fullName;
         }
     }
