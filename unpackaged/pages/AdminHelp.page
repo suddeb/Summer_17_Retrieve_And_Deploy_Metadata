@@ -7,12 +7,12 @@
             <apex:dataTable value="{!adminPrefs}" var="singleAdminPref" id="theTable"
                 rowClasses="odd,even" styleClass="tableClass">
                 
-                <apex:column>
+                <apex:column >
                     <apex:facet name="header">Name</apex:facet>
                     <apex:outputText value="{!singleAdminPref.name}" />
                 </apex:column>
 
-                <apex:column>
+                <apex:column >
                     <apex:facet name="header">Enabled</apex:facet>
                     <apex:inputCheckbox value="{!singleAdminPref.isEnabled}" />
                 </apex:column>
